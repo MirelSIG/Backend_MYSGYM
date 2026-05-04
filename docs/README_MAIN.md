@@ -194,7 +194,7 @@ Flujo básico para levantar el proyecto:
 
 La documentación principal del proyecto está resumida en [README.md](README.md), pero este archivo sirve como explicación rápida de la rama Yeremi para el resto del equipo.
 
-## 10. Valor de la rama Yeremi
+## 10. Valor de la explicacion de esta rama
 
 Esta rama deja preparado el backend con una base funcional para el trabajo colaborativo: entidades principales, endpoints REST, autenticación JWT, protección por roles y una estructura modular que facilita seguir desarrollando el sistema sin mezclar responsabilidades.
 

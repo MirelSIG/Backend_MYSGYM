@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(120) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     telefono VARCHAR(20),
-    fecha_registro DATE DEFAULT (CURRENT_DATE),
+    fecha_registro DATE DEFAULT CURRENT_DATE,
     estado ENUM('activo', 'inactivo', 'suspendido') DEFAULT 'activo',
     INDEX (email),
     INDEX (nombre)
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS empleados (
     email VARCHAR(120) NOT NULL UNIQUE,
     rol VARCHAR(50) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    fecha_contratacion DATE DEFAULT (CURRENT_DATE),
+    fecha_contratacion DATE DEFAULT CURRENT_DATE,
     INDEX (email)
 ) ENGINE=InnoDB;
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS reservas (
 CREATE TABLE IF NOT EXISTS pagos (
     id_pago INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
-    fecha_pago DATE DEFAULT (CURRENT_DATE),
+    fecha_pago DATE DEFAULT CURRENT_DATE,
     monto DECIMAL(10, 2) NOT NULL,
     metodo_pago VARCHAR(50),
     estado VARCHAR(20) DEFAULT 'Completado',
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS materiales (
 CREATE TABLE IF NOT EXISTS incidencias (
     id_incidencia INT AUTO_INCREMENT PRIMARY KEY,
     descripcion TEXT NOT NULL,
-    fecha DATE DEFAULT (CURRENT_DATE),
+    fecha DATE DEFAULT CURRENT_DATE,
     empleado_id INT,
     material_id INT,
     estado ENUM('pendiente', 'en proceso', 'resuelta') DEFAULT 'pendiente',

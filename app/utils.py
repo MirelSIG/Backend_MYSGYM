@@ -1,6 +1,7 @@
 from functools import wraps
-from flask_jwt_extended import get_jwt
+
 from flask import jsonify
+from flask_jwt_extended import get_jwt
 
 def admin_required():
     def wrapper(fn):
