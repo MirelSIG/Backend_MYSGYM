@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+env_file = os.getenv('ENV_FILE', '.env')
+load_dotenv(env_file)
 
 class Config:
     DB_HOST = os.getenv('DB_HOST', 'localhost')

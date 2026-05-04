@@ -2,6 +2,8 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+ENV ENV_FILE=.env.docker
+
 # Instalar dependencias del sistema necesarias
 RUN apt-get update && apt-get install -y \
     gcc \
