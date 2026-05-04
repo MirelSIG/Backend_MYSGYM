@@ -3,7 +3,10 @@ import os
 from datetime import datetime, time
 
 # Add the Backend path to sys.path so we can import the app
-sys.path.append('/home/penascalf5/Escritorio/Backend_MYSGYM')
+# Add repository root to sys.path (avoid hard-coded absolute paths)
+repo_root = os.path.abspath(os.path.dirname(__file__))
+if repo_root not in sys.path:
+    sys.path.insert(0, repo_root)
 
 from app import create_app, db
 from app.models import Sala, Horario, Empleado, Usuario, Actividad, Material
