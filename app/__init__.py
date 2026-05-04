@@ -38,10 +38,6 @@ def create_app(config_class=Config):
     app.register_blueprint(mantenimiento_bp, url_prefix='/mantenimiento')
     app.register_blueprint(empleados_bp, url_prefix='/empleados')
 
-    with app.app_context():
-        db.create_all()
-        seed_database(db)
-
     @app.route('/')
     def index():
         return {
