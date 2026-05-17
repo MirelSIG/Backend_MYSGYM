@@ -58,7 +58,7 @@ docker-compose up -d
 ```
 *La base de datos estará disponible en `localhost:3307`.*
 
-En Render, el backend usa una base gestionada de PostgreSQL y recibe su conexión desde `DATABASE_URL`.
+En Render, el backend puede usar una base externa de PostgreSQL y recibe su conexión desde `DATABASE_URL`.
 
 ### 3. Configurar Variables de Entorno
 Crea un archivo llamado `.env` en la raíz del proyecto con el siguiente contenido base:
@@ -112,17 +112,17 @@ El servidor estará disponible en `http://localhost:8000`.
 
 ## Despliegue en Render
 
-Este repositorio incluye un blueprint en [render.yaml](render.yaml) para publicar **una sola app web** en Render:
+Este repositorio incluye un blueprint en [render.yaml](render.yaml) para publicar **una sola app web** en Render sin crear una base gestionada de pago:
 
 - La raíz `/` sirve la interfaz web unificada.
 - La API sigue disponible en `/api` y en los blueprints existentes (`/auth`, `/usuarios`, `/gym`, etc.).
-- Render inyecta `DATABASE_URL` desde la base gestionada `mysgym-db`.
+- `DATABASE_URL` se configura manualmente en el Web Service y apunta a una PostgreSQL externa.
 
 Resumen del flujo:
 
 1. Conecta el repositorio en Render como Web Service.
 2. Deja que Render lea [render.yaml](render.yaml).
-3. Crea o usa la base de datos gestionada indicada en el blueprint.
+3. Añade la variable de entorno `DATABASE_URL` con la cadena de conexión de tu PostgreSQL externa.
 4. Abre la URL pública del Web Service: ese será el **único enlace** del proyecto.
 
 ## Tests
