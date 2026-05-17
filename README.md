@@ -59,6 +59,7 @@ docker-compose up -d
 *La base de datos estará disponible en `localhost:3307`.*
 
 En Render, el backend puede usar una base externa de PostgreSQL y recibe su conexión desde `DATABASE_URL`.
+Si esa base es Supabase, el proyecto añade `sslmode=require` automáticamente cuando la URL lo necesita.
 
 ### 3. Configurar Variables de Entorno
 Crea un archivo llamado `.env` en la raíz del proyecto con el siguiente contenido base:
@@ -116,13 +117,13 @@ Este repositorio incluye un blueprint en [render.yaml](render.yaml) para publica
 
 - La raíz `/` sirve la interfaz web unificada.
 - La API sigue disponible en `/api` y en los blueprints existentes (`/auth`, `/usuarios`, `/gym`, etc.).
-- `DATABASE_URL` se configura manualmente en el Web Service y apunta a una PostgreSQL externa.
+- `DATABASE_URL` se configura manualmente en el Web Service y apunta a una PostgreSQL externa, por ejemplo Supabase.
 
 Resumen del flujo:
 
 1. Conecta el repositorio en Render como Web Service.
 2. Deja que Render lea [render.yaml](render.yaml).
-3. Añade la variable de entorno `DATABASE_URL` con la cadena de conexión de tu PostgreSQL externa.
+3. Añade la variable de entorno `DATABASE_URL` con la cadena de conexión de tu PostgreSQL externa o de Supabase.
 4. Abre la URL pública del Web Service: ese será el **único enlace** del proyecto.
 
 ## Tests

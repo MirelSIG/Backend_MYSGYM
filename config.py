@@ -1,4 +1,6 @@
 import os
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+
 from dotenv import load_dotenv
 
 env_file = os.getenv('ENV_FILE', '.env')
@@ -11,7 +13,21 @@ def build_database_uri():
         if database_url.startswith('postgres://'):
             database_url = database_url.replace('postgres://', 'postgresql://', 1)
         if database_url.startswith('postgresql://'):
-            return database_url.replace('postgresql://', 'postgresql+psycopg://', 1)
+            database_url = database_url.replace('postgresql://', 'postgresql+psycopg://', 1)
+        parsed_url = urlsplit(database_url)
+        hostname = (parsed_url.hostname or '').lower()
+        if hostname.endswith('.supabase.co') and 'sslmode=' not in (parsed_url.query or '').lower():
+            query_params = dict(parse_qsl(parsed_url.query, keep_blank_values=True))
+            query_params['sslmode'] = 'require'
+            database_url = urlunsplit(
+                (
+                    parsed_url.scheme,
+                    parsed_url.netloc,
+                    parsed_url.path,
+                    urlencode(query_params),
+                    parsed_url.fragment,
+                )
+            )
         return database_url
 
     db_host = os.getenv('DB_HOST', 'localhost')
