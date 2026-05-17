@@ -110,6 +110,21 @@ El servidor estará disponible en `http://localhost:8000`.
 - **[seed_db.py](seed_db.py)**: Script principal para poblar la base de datos con información didáctica inicial.
 - **[database_schema.sql](database_schema.sql)**: Esquema completo de la base de datos (se ejecuta automáticamente en el primer `docker-compose up`).
 
+## Despliegue en Render
+
+Este repositorio incluye un blueprint en [render.yaml](render.yaml) para publicar **una sola app web** en Render:
+
+- La raíz `/` sirve la interfaz web unificada.
+- La API sigue disponible en `/api` y en los blueprints existentes (`/auth`, `/usuarios`, `/gym`, etc.).
+- Render inyecta `DATABASE_URL` desde la base gestionada `mysgym-db`.
+
+Resumen del flujo:
+
+1. Conecta el repositorio en Render como Web Service.
+2. Deja que Render lea [render.yaml](render.yaml).
+3. Crea o usa la base de datos gestionada indicada en el blueprint.
+4. Abre la URL pública del Web Service: ese será el **único enlace** del proyecto.
+
 ## Tests
 
 El proyecto incluye pruebas automatizadas con `pytest` para validar el estado de la base de datos y el flujo de integración.
