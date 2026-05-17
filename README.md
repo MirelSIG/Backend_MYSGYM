@@ -20,7 +20,7 @@ Backend_MYSGYM/
 ├── tests/                  # Pruebas unitarias y de integración
 ├── database_schema.sql     # Script SQL completo de la DB
 ├── docker-compose.yml      # Orquestación de contenedores
-├── run.py                  # Punto de entrada de la aplicación
+├── app.py                  # Punto de entrada de la aplicación
 └── requirements.txt        # Dependencias del proyecto
 ```
 
@@ -99,7 +99,7 @@ python seed_db.py
 
 ### 7. Ejecutar el backend
 ```bash
-python run.py
+python app.py
 ```
 El servidor estará disponible en `http://localhost:8000`.
 
