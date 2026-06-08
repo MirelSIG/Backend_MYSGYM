@@ -2,12 +2,10 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-ENV ENV_FILE=.env.docker
-
-# Instalar dependencias del sistema necesarias
+# Instalar dependencias del sistema necesarias para psycopg3
 RUN apt-get update && apt-get install -y \
     gcc \
-    default-libmysqlclient-dev \
+    libpq-dev \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
